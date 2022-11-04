@@ -1,5 +1,8 @@
 package br.com.bluesoft.alucar.model;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 
 @Entity
@@ -24,6 +27,7 @@ public class Endereco {
     private String estado;
 
     @OneToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "cliente_key")
     private Cliente cliente;
 

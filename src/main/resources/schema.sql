@@ -25,7 +25,7 @@ CREATE TABLE endereco (
                           cidade VARCHAR(50) NOT NULL,
                           estado VARCHAR(2) NOT NULL,
                           cliente_key INT NOT NULL,
-                          foreign key (cliente_key) references cliente(cliente_key)
+                          foreign key (cliente_key) references cliente(cliente_key) on delete cascade
 );
 
 CREATE TABLE vendedor (
@@ -41,7 +41,7 @@ CREATE TABLE conta_corrente (
   agencia INT NOT NULL,
   conta_corrente INT NOT NULL,
   vendedor_key INT NOT NULL,
-  foreign key (vendedor_key) references vendedor(vendedor_key)
+  foreign key (vendedor_key) references vendedor(vendedor_key) on delete cascade
 );
 
 CREATE TABLE aluguel(

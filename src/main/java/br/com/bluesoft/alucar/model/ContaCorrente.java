@@ -1,5 +1,8 @@
 package br.com.bluesoft.alucar.model;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 
 @Entity
@@ -20,6 +23,7 @@ public class ContaCorrente {
     private Integer contaCorrente;
 
     @OneToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "vendedor_key")
     private Vendedor vendedor;
 

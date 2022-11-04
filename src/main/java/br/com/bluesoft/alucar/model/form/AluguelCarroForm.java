@@ -34,13 +34,13 @@ public class AluguelCarroForm {
     private int qtdDiasAluguel;
 
     public Aluguel formToAluguel(ClienteRepository clienteRepository, VendedorRepository vendedorRepository, CarroRepository carroRepository){
-        Cliente cliente = clienteRepository.findByCpf(cpfCliente);
-        Vendedor vendedor = vendedorRepository.findByCpf(cpfVendedor);
+        Optional<Cliente> cliente = clienteRepository.findByCpf(cpfCliente);
+        Optional<Vendedor> vendedor = vendedorRepository.findByCpf(cpfVendedor);
         Optional<Carro> carro = carroRepository.findByPlaca(placaDoCarro);
-        if(carro.isEmpty()){
+        if(carro.isEmpty() || cliente.isEmpty()){
             throw new NoSuchElementException();
         }
-        return new Aluguel(cliente, vendedor, carro.get(), qtdDiasAluguel);
+        return new Aluguel(cliente.get(), vendedor.get(), carro.get(), qtdDiasAluguel);
     }
 
     public Long getCpfCliente() {

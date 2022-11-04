@@ -1,5 +1,8 @@
 package br.com.bluesoft.alucar.model;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 
 @Entity
@@ -16,9 +19,10 @@ public class Cliente {
     @Column(nullable = false)
     private Long cpf;
 
-    @OneToOne
-    @Transient //para não criar a coluna na tabela
-    private Endereco endereco;
+//    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+//    @OnDelete(action = OnDeleteAction.CASCADE)
+//    @Transient
+//    private Endereco endereco;
 
     @Column(nullable = false)
     private String email;
@@ -27,6 +31,14 @@ public class Cliente {
     private Long celular;
 
     public Cliente() {
+    }
+
+    public Cliente(String nomeCompleto, Long cpf, Endereco endereco, String email, Long celular) {
+        this.nomeCompleto = nomeCompleto;
+        this.cpf = cpf;
+//        this.endereco = endereco;
+        this.email = email;
+        this.celular = celular;
     }
 
     public Long getId() {
