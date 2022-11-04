@@ -43,3 +43,26 @@ CREATE TABLE conta_corrente (
   vendedor_key INT NOT NULL,
   foreign key (vendedor_key) references vendedor(vendedor_key)
 );
+
+CREATE TABLE aluguel(
+  aluguel_key INT PRIMARY KEY AUTO_INCREMENT,
+  modelo VARCHAR(20) not null,
+  dias INT not null,
+  valor_aluguel FLOAT not null,
+  data_aluguel DATE not null,
+  cliente_key INT not null,
+  foreign key (cliente_key) references cliente(cliente_key),
+  vendedor_key INT,
+  foreign key (vendedor_key) references vendedor(vendedor_key),
+  placa VARCHAR(8),
+  foreign key (placa) references carro(placa)
+);
+
+CREATE TABLE comissao(
+    comissao_key INT PRIMARY KEY AUTO_INCREMENT,
+    valor FLOAT NOT NULL,
+    vendedor_key INT,
+    foreign key (vendedor_key) references vendedor(vendedor_key),
+    conta_corrente_key INT,
+    foreign key (conta_corrente_key) references conta_corrente(conta_corrente_key)
+);
