@@ -9,6 +9,8 @@ import br.com.bluesoft.alucar.repository.ClienteRepository;
 import br.com.bluesoft.alucar.repository.VendedorRepository;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 public class AluguelCarroForm {
 
@@ -34,8 +36,11 @@ public class AluguelCarroForm {
     public Aluguel formToAluguel(ClienteRepository clienteRepository, VendedorRepository vendedorRepository, CarroRepository carroRepository){
         Cliente cliente = clienteRepository.findByCpf(cpfCliente);
         Vendedor vendedor = vendedorRepository.findByCpf(cpfVendedor);
-        Carro carro = carroRepository.findByPlaca(placaDoCarro);
-        return new Aluguel(cliente, vendedor, carro, qtdDiasAluguel);
+        Optional<Carro> carro = carroRepository.findByPlaca(placaDoCarro);
+        if(carro.isEmpty()){
+            throw new NoSuchElementException();
+        }
+        return new Aluguel(cliente, vendedor, carro.get(), qtdDiasAluguel);
     }
 
     public Long getCpfCliente() {
