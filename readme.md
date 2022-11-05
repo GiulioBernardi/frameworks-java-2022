@@ -18,14 +18,103 @@ Também é possível consultar a comissão de um único vendedor, passando o cpf
 
 Apesar de todas essas funcionalidades, a API realiza crud das entidades solicitadas (Carro, vendedor e cliente)
 
-**Coisas que faltam: (serão adicionadas até dia 7/11)**
+## Coisas que faltam: (serão adicionadas até dia 7/11)**
 - Retornar ResponseEntity com códigos semânticos
 - Tratar exceções para e exibir erros no front, não exibindo erros de log do backend
 - Adicionar hypermedia nas requisições de comissão, aluguel, e no retorno de todos os métodos get de Carro, Cliente e Vendedor
 - Adicionar logical delete para todas as entidades que estão guardadas no banco
 
+## Para testar você mesmo
+### Endpoints: 
+**Cliente**
+- GET: localhost:8080/clientes
+- GET por cpf: localhost:8080/clientes/{cpf}
+- Cadastrar: localhost:8080/clientes/cadastrar
+```
+{
+		"nomeCompleto": "Alfredo dos Santos",
+		"cpf": 52514252625,
+		"endereco": null,
+		"email": "alfredo@gmail.com",
+		"celular": 945210120
+}
+```
 
+- Atualizar: localhost:8080/clientes/atualizar/{cpf}
+```
+{
+		"nomeCompleto": "Alfredo dos Santos Silva",
+		"cpf": 52514252625,
+		"endereco": null,
+		"email": "alfredo@gmail.com",
+		"celular": 945210120
+}
+```
+- Deletar: localhost:8080/clientes/deletar/{cpf}
 
+**Carro**
+- GET: localhost:8080/carros
+- GET por placa: localhost:8080/carros/{placa} 
+- Cadastrar: localhost:8080/carros/cadastrar
+```
+{
+		"placa": "POM-6585",
+		"marca": "Volkswagen",
+		"modelo": "Gol",
+		"cor": "Branco",
+		"ano": 2017,
+		"quilometragem": 54200,
+		"diaria": 25.5
+}
+```
+- Atualizar: localhost:8080/carros/atualizar/{placa}
+```
+{
+		"marca": "Volkswagen",
+		"modelo": "Gol",
+		"cor": "Branco",
+		"ano": 2017,
+		"quilometragem": 54200,
+		"diaria": 100.0
+}
+```
+
+- Deletar: localhost:8080/carros/deletar/{placa}
+
+**Vendedor**
+- GET: localhost:8080/vendedor
+- GET por cpf: localhost:8080/vendedor/{cpf}
+- Cadastrar: localhost:8080/vendedor/cadastrar
+```
+{
+		"nomeCompleto": "Gustavo Nascimento",
+		"cpf": 23562514584,
+		"dataAdmissao": "2018-03-14"
+}
+```
+- Atualizar: localhost:8080/vendedor/atualizar/{cpf}
+```
+{
+		"nomeCompleto": "Gustavo Nascimento",
+		"cpf": 23562514584,
+		"dataAdmissao": "2020-03-14"
+}
+```
+- Deletar: localhost:8080/vendedor/deletar/{cpf}
+
+**Aluguel/comissao**
+- Alugar carro: localhost:8080/aluguel/alugar
+```
+{
+	"cpfCliente" : 39371890017,
+	"cpfVendedor": 34378748819,
+	"placaDoCarro": "EFD-6958",
+	"qtdDiasAluguel" : 3
+}
+```
+
+- Comissão de todos: localhost:8080/comissões
+- Comissão por cpf: localhost:8080/comissões/63625148798
 
 
 ## Bem vindo ao desafio de frameworks do movimento codar.
