@@ -52,6 +52,14 @@ public class CarroService {
         return new CarroDTO(carroOptional.get());
     }
 
+    public Carro obterPorPlacaModel(String placa) {
+        Optional<Carro> carroOptional = carroRepository.findByPlaca(placa.toUpperCase());
+        if(carroOptional.isEmpty()){
+            throw new NoSuchElementException("Carro não encontrado");
+        }
+        return carroOptional.get();
+    }
+
     public void deletar(String placa) {
         Optional<Carro> carroOptional = carroRepository.findByPlaca(placa.toUpperCase());
         if(carroOptional.isEmpty()){

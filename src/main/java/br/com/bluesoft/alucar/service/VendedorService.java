@@ -33,6 +33,14 @@ public class VendedorService {
         return new VendedorDTO(vendedorOptional.get());
     }
 
+    public Vendedor obterPorCpfModel(Long cpf) {
+        Optional<Vendedor> vendedorOptional = vendedorRepository.findByCpf(cpf);
+        if(vendedorOptional.isEmpty()){
+            throw new NoSuchElementException("Vendedor não encontrado");
+        }
+        return vendedorOptional.get();
+    }
+
     public Vendedor salvar(VendedorForm vendedorForm) {
         Vendedor vendedor = vendedorForm.formToVendedor();
         vendedorRepository.save(vendedor);

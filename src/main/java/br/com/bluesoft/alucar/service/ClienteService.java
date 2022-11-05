@@ -35,9 +35,15 @@ public class ClienteService {
         if(clienteOptional.isEmpty()){
             throw new NoSuchElementException();
         }
-
         return new ClienteDTO(clienteOptional.get());
+    }
 
+    public Cliente obterPorCpfModel(Long cpf) {
+        Optional<Cliente> clienteOptional = clienteRepository.findByCpf(cpf);
+        if(clienteOptional.isEmpty()){
+            throw new NoSuchElementException();
+        }
+        return clienteOptional.get();
     }
 
     public Cliente salvar(ClienteForm clienteForm) {
@@ -64,4 +70,5 @@ public class ClienteService {
 //        enderecoService.deletetarTodosEnderecosDoClienteDeletado(cpf);
         clienteRepository.deleteById(clienteOptional.get().getId());
     }
+
 }
