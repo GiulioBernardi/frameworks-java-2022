@@ -1,5 +1,33 @@
 # Frameworks
 
+Json para alugar um carro:
+<p align="center">
+  <img width="50%" src="https://user-images.githubusercontent.com/54187661/200117389-637816a4-a7a7-4adc-b1c8-8b5b1c242409.png" />
+</p>
+
+Consulta de comissão (essa consulta soma todas as comissões dos vendedores para que o RH saiba quanto pagar ao final do mês a cada vendedor, sem que precise perder tempo somando todo valor ganho):
+
+<p align="center">
+  <img width="50%" src="https://user-images.githubusercontent.com/54187661/200117421-cd2e84db-cfd1-49b2-8c28-df3cbea3300d.png" />
+</p>
+
+Também é possível consultar a comissão de um único vendedor, passando o cpf dele
+<p align="center">
+  <img width="50%" src="https://user-images.githubusercontent.com/54187661/200117446-f7b2674d-fc4f-4dc4-8b1d-577459d30cf6.png" />
+</p>
+
+Apesar de todas essas funcionalidades, a API realiza crud das entidades solicitadas (Carro, vendedor e cliente)
+
+**Coisas que faltam: (serão adicionadas até dia 7/11)**
+- Retornar ResponseEntity com códigos semânticos
+- Tratar exceções para e exibir erros no front, não exibindo erros de log do backend
+- Adicionar hypermedia nas requisições de comissão, aluguel, e no retorno de todos os métodos get de Carro, Cliente e Vendedor
+- Adicionar logical delete para todas as entidades que estão guardadas no banco
+
+
+
+
+
 ## Bem vindo ao desafio de frameworks do movimento codar.
 
 A idéia deste desafio é forçar a prática deliberada do nosso conhecimento de Spring Boot, Spring MVC, JPA e Spring Data.
