@@ -26,9 +26,7 @@ public class ComissaoService {
 
     public void cadastrarComissao(Vendedor vendedor, BigDecimal valorDaVenda ){
 
-        System.out.println("CPF VENDENDDDODOODOODOOR: " + vendedor.getCpf());
         ContaCorrente contaCorrente = contaCorrenteRepository.buscaPorVendedor(vendedor.getCpf());
-        System.out.println("CONTA CORRENTE CARALHO: " + contaCorrente.getContaCorrente());
         Boolean isVendedorVeterano = ChronoUnit.YEARS.between(vendedor.getDataAdmissao(), LocalDate.now()) > 5;
 
         Comissao comissao = new Comissao(vendedor, contaCorrente);

@@ -5,6 +5,7 @@ import br.com.bluesoft.alucar.model.dto.ComissaoDTO;
 import br.com.bluesoft.alucar.repository.CarroRepository;
 import br.com.bluesoft.alucar.repository.ComissaoRepository;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -41,6 +42,10 @@ public class ComissaoController {
         return comissoes;
     }
 
+    @GetMapping("/{cpf}")
+    public ComissaoDTO getComissaoPorCof(@PathVariable Long cpf){
+        return comissaoRepository.agrupaPorVendedorByCpf(cpf);
+    }
 
 
 
