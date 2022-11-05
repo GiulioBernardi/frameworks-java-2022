@@ -25,6 +25,7 @@ Apesar de todas essas funcionalidades, a API realiza crud das entidades solicita
 - Adicionar logical delete para todas as entidades que estão guardadas no banco
 
 ## Para testar você mesmo
+Tenha em vista que, por ainda não estar 100% tradado, ao forçar alguma requisição errada, o app vai quebrar!
 ### Endpoints: 
 **Cliente**
 - GET: localhost:8080/clientes
