@@ -18,11 +18,11 @@ Também é possível consultar a comissão de um único vendedor, passando o cpf
 
 Apesar de todas essas funcionalidades, a API realiza crud das entidades solicitadas (Carro, vendedor e cliente)
 
-## Coisas que faltam: (serão adicionadas até dia 7/11)**
-- Retornar ResponseEntity com códigos semânticos
-- Tratar exceções para e exibir erros no front, não exibindo erros de log do backend
-- Adicionar hypermedia nas requisições de comissão, aluguel, e no retorno de todos os métodos get de Carro, Cliente e Vendedor
+## Coisas que serão implementadas: (serão adicionadas até dia 7/11)**
+- Retornar ResponseEntity com códigos semânticos para todas as requisições
+- Tratar exceções para e exibir erros no front, não exibindo erros de log do backend e impedir o app de quebrar
 - Adicionar logical delete para todas as entidades que estão guardadas no banco
+- Refatorar o código para seprara melhor services e controllers
 
 ## Para testar você mesmo
 Tenha em vista que, por ainda não estar 100% tradado, ao forçar alguma requisição errada, o app vai quebrar!
@@ -117,7 +117,7 @@ Tenha em vista que, por ainda não estar 100% tradado, ao forçar alguma requisi
 - Comissão de todos: https://alucarcodar.herokuapp.com/comissões
 - Comissão por cpf: https://alucarcodar.herokuapp.com/comissões/63625148798
 
-
+<br><br><br>
 ## Bem vindo ao desafio de frameworks do movimento codar.
 
 A idéia deste desafio é forçar a prática deliberada do nosso conhecimento de Spring Boot, Spring MVC, JPA e Spring Data.
