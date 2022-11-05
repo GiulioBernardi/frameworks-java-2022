@@ -28,9 +28,9 @@ Apesar de todas essas funcionalidades, a API realiza crud das entidades solicita
 Tenha em vista que, por ainda não estar 100% tradado, ao forçar alguma requisição errada, o app vai quebrar!
 ### Endpoints: 
 **Cliente**
-- GET: localhost:8080/clientes
-- GET por cpf: localhost:8080/clientes/{cpf}
-- Cadastrar: localhost:8080/clientes/cadastrar
+- GET: https://alucarcodar.herokuapp.com/clientes
+- GET por cpf: https://alucarcodar.herokuapp.com/{cpf}
+- Cadastrar: https://alucarcodar.herokuapp.com/clientes/cadastrar
 ```
 {
 		"nomeCompleto": "Alfredo dos Santos",
@@ -41,7 +41,7 @@ Tenha em vista que, por ainda não estar 100% tradado, ao forçar alguma requisi
 }
 ```
 
-- Atualizar: localhost:8080/clientes/atualizar/{cpf}
+- Atualizar: https://alucarcodar.herokuapp.com/clientes/atualizar/{cpf}
 ```
 {
 		"nomeCompleto": "Alfredo dos Santos Silva",
@@ -51,12 +51,12 @@ Tenha em vista que, por ainda não estar 100% tradado, ao forçar alguma requisi
 		"celular": 945210120
 }
 ```
-- Deletar: localhost:8080/clientes/deletar/{cpf}
+- Deletar: https://alucarcodar.herokuapp.com/clientes/deletar/{cpf}
 
 **Carro**
-- GET: localhost:8080/carros
-- GET por placa: localhost:8080/carros/{placa} 
-- Cadastrar: localhost:8080/carros/cadastrar
+- GET: https://alucarcodar.herokuapp.com/carros
+- GET por placa: https://alucarcodar.herokuapp.com/carros/{placa} 
+- Cadastrar: https://alucarcodar.herokuapp.com/carros/cadastrar
 ```
 {
 		"placa": "POM-6585",
@@ -68,7 +68,7 @@ Tenha em vista que, por ainda não estar 100% tradado, ao forçar alguma requisi
 		"diaria": 25.5
 }
 ```
-- Atualizar: localhost:8080/carros/atualizar/{placa}
+- Atualizar: https://alucarcodar.herokuapp.com/carros/atualizar/{placa}
 ```
 {
 		"marca": "Volkswagen",
@@ -80,12 +80,12 @@ Tenha em vista que, por ainda não estar 100% tradado, ao forçar alguma requisi
 }
 ```
 
-- Deletar: localhost:8080/carros/deletar/{placa}
+- Deletar: https://alucarcodar.herokuapp.com/carros/deletar/{placa}
 
 **Vendedor**
-- GET: localhost:8080/vendedor
-- GET por cpf: localhost:8080/vendedor/{cpf}
-- Cadastrar: localhost:8080/vendedor/cadastrar
+- GET: https://alucarcodar.herokuapp.com/vendedor
+- GET por cpf: https://alucarcodar.herokuapp.com/vendedor/{cpf}
+- Cadastrar: https://alucarcodar.herokuapp.com/vendedor/cadastrar
 ```
 {
 		"nomeCompleto": "Gustavo Nascimento",
@@ -93,7 +93,7 @@ Tenha em vista que, por ainda não estar 100% tradado, ao forçar alguma requisi
 		"dataAdmissao": "2018-03-14"
 }
 ```
-- Atualizar: localhost:8080/vendedor/atualizar/{cpf}
+- Atualizar: https://alucarcodar.herokuapp.com/vendedor/atualizar/{cpf}
 ```
 {
 		"nomeCompleto": "Gustavo Nascimento",
@@ -101,10 +101,10 @@ Tenha em vista que, por ainda não estar 100% tradado, ao forçar alguma requisi
 		"dataAdmissao": "2020-03-14"
 }
 ```
-- Deletar: localhost:8080/vendedor/deletar/{cpf}
+- Deletar: https://alucarcodar.herokuapp.com/vendedor/deletar/{cpf}
 
 **Aluguel/comissao**
-- Alugar carro: localhost:8080/aluguel/alugar
+- Alugar carro: https://alucarcodar.herokuapp.com/aluguel/alugar
 ```
 {
 	"cpfCliente" : 39371890017,
@@ -114,8 +114,8 @@ Tenha em vista que, por ainda não estar 100% tradado, ao forçar alguma requisi
 }
 ```
 
-- Comissão de todos: localhost:8080/comissões
-- Comissão por cpf: localhost:8080/comissões/63625148798
+- Comissão de todos: https://alucarcodar.herokuapp.com/comissões
+- Comissão por cpf: https://alucarcodar.herokuapp.com/comissões/63625148798
 
 
 ## Bem vindo ao desafio de frameworks do movimento codar.
