@@ -4,12 +4,10 @@ import br.com.bluesoft.alucar.model.Carro;
 import br.com.bluesoft.alucar.model.dto.CarroDTO;
 import br.com.bluesoft.alucar.model.form.CarroForm;
 import br.com.bluesoft.alucar.model.form.atualizar.CarroAtualizarForm;
-import br.com.bluesoft.alucar.repository.CarroRepository;
 import br.com.bluesoft.alucar.service.CarroService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
-
 import javax.management.InstanceAlreadyExistsException;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
@@ -83,13 +81,4 @@ public class CarroController {
             return ResponseEntity.notFound().build();
         }
     }
-
-
-
-
-
-
-
-
-
 }

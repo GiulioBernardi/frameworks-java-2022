@@ -1,6 +1,5 @@
 package br.com.bluesoft.alucar.service;
 
-import br.com.bluesoft.alucar.model.Cliente;
 import br.com.bluesoft.alucar.model.Vendedor;
 import br.com.bluesoft.alucar.model.dto.VendedorDTO;
 import br.com.bluesoft.alucar.model.form.VendedorForm;

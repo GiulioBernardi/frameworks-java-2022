@@ -1,11 +1,9 @@
 package br.com.bluesoft.alucar.controller;
 
 import br.com.bluesoft.alucar.model.Cliente;
-import br.com.bluesoft.alucar.model.dto.CarroDTO;
 import br.com.bluesoft.alucar.model.dto.ClienteDTO;
 import br.com.bluesoft.alucar.model.form.ClienteForm;
 import br.com.bluesoft.alucar.model.form.atualizar.ClienteAtualizarForm;
-import br.com.bluesoft.alucar.repository.ClienteRepository;
 import br.com.bluesoft.alucar.service.ClienteService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -65,7 +63,4 @@ public class ClienteController {
         clienteService.deletar(cpf);
         return ResponseEntity.noContent().build();
     }
-
-
-
 }

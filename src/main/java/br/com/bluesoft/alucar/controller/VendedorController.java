@@ -1,12 +1,9 @@
 package br.com.bluesoft.alucar.controller;
 
 
-import br.com.bluesoft.alucar.model.Cliente;
 import br.com.bluesoft.alucar.model.Vendedor;
-import br.com.bluesoft.alucar.model.dto.ClienteDTO;
 import br.com.bluesoft.alucar.model.dto.VendedorDTO;
 import br.com.bluesoft.alucar.model.form.VendedorForm;
-import br.com.bluesoft.alucar.model.form.atualizar.ClienteAtualizarForm;
 import br.com.bluesoft.alucar.model.form.atualizar.VendedorAtualizarForm;
 import br.com.bluesoft.alucar.service.VendedorService;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +15,6 @@ import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/vendedor")

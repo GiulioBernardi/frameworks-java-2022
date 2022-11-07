@@ -5,7 +5,6 @@ import br.com.bluesoft.alucar.model.ContaCorrente;
 import br.com.bluesoft.alucar.model.Vendedor;
 import br.com.bluesoft.alucar.repository.ComissaoRepository;
 import br.com.bluesoft.alucar.repository.ContaCorrenteRepository;
-import jdk.swing.interop.SwingInterOpUtils;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
