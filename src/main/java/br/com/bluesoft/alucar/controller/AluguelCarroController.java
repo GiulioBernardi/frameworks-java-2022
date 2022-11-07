@@ -14,6 +14,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.transaction.Transactional;
 import java.net.URI;
+import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("/aluguel")
@@ -35,12 +36,17 @@ public class AluguelCarroController {
     @Transactional
     public ResponseEntity<AluguelDTO> cadastrarVenda(@RequestBody AluguelCarroForm vendaCarroForm, UriComponentsBuilder uriBuilder) {
 
-        Aluguel aluguel = aluguelCarroService.salvar(vendaCarroForm);
+        try{
+            Aluguel aluguel = aluguelCarroService.salvar(vendaCarroForm);
 
 
-        URI uri = uriBuilder.path("/aluguel/{id}")
-                .buildAndExpand(aluguel.getId())
-                .toUri();
-        return ResponseEntity.created(uri).body(new AluguelDTO(aluguel));
+            URI uri = uriBuilder.path("/aluguel/{id}")
+                    .buildAndExpand(aluguel.getId())
+                    .toUri();
+            return ResponseEntity.created(uri).body(new AluguelDTO(aluguel));
+        }catch (NoSuchElementException e){
+            return ResponseEntity.notFound().build();
+        }
+
     }
 }

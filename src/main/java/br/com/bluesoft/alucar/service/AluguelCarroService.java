@@ -16,20 +16,30 @@ public class AluguelCarroService {
     VendedorRepository vendedorRepository;
     CarroRepository carroRepository;
     ComissaoService comissaoService;
+    ClienteService clienteService;
+    VendedorService vendedorService;
 
+    CarroService carroService;
     public AluguelCarroService(ClienteRepository clienteRepository,
                                VendedorRepository vendedorRepository,
                                CarroRepository carroRepository,
                                AluguelRepository aluguelRepository,
-                               ComissaoService comissaoService){
+                               ComissaoService comissaoService,
+                               ClienteService clienteService,
+                               CarroService carroService,
+                               VendedorService vendedorService){
         this.carroRepository = carroRepository;
         this.vendedorRepository = vendedorRepository;
         this.clienteRepository = clienteRepository;
         this.comissaoService = comissaoService;
         this.aluguelRepository = aluguelRepository;
+        this.clienteService = clienteService;
+        this.vendedorService = vendedorService;
+        this.carroService = carroService;
     }
     public Aluguel salvar(AluguelCarroForm vendaCarroForm) {
-        Aluguel aluguel = vendaCarroForm.formToAluguel(clienteRepository, vendedorRepository, carroRepository);
+
+        Aluguel aluguel = vendaCarroForm.formToAluguel(clienteService, vendedorService, carroService);
 
         comissaoService.cadastrarComissao(aluguel.getVendedor(), aluguel.getValorTotalAluguel());
 

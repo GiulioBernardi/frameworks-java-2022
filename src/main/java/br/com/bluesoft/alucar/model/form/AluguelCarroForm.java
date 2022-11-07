@@ -4,9 +4,14 @@ import br.com.bluesoft.alucar.model.Aluguel;
 import br.com.bluesoft.alucar.model.Carro;
 import br.com.bluesoft.alucar.model.Cliente;
 import br.com.bluesoft.alucar.model.Vendedor;
+import br.com.bluesoft.alucar.model.dto.ClienteDTO;
 import br.com.bluesoft.alucar.repository.CarroRepository;
 import br.com.bluesoft.alucar.repository.ClienteRepository;
 import br.com.bluesoft.alucar.repository.VendedorRepository;
+import br.com.bluesoft.alucar.service.CarroService;
+import br.com.bluesoft.alucar.service.ClienteService;
+import br.com.bluesoft.alucar.service.VendedorService;
+
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.NoSuchElementException;
@@ -33,14 +38,13 @@ public class AluguelCarroForm {
     @NotEmpty
     private int qtdDiasAluguel;
 
-    public Aluguel formToAluguel(ClienteRepository clienteRepository, VendedorRepository vendedorRepository, CarroRepository carroRepository){
-        Optional<Cliente> cliente = clienteRepository.findByCpf(cpfCliente);
-        Optional<Vendedor> vendedor = vendedorRepository.findByCpf(cpfVendedor);
-        Optional<Carro> carro = carroRepository.findByPlaca(placaDoCarro);
-        if(carro.isEmpty() || cliente.isEmpty()){
-            throw new NoSuchElementException();
-        }
-        return new Aluguel(cliente.get(), vendedor.get(), carro.get(), qtdDiasAluguel);
+    public Aluguel formToAluguel(ClienteService clienteService, VendedorService vendedorService, CarroService carroService){
+
+        Cliente cliente = clienteService.obterPorCpfModel(cpfCliente);
+        Vendedor vendedor = vendedorService.obterPorCpfModel(cpfVendedor);
+        Carro carro = carroService.obterPorPlacaModel(placaDoCarro);
+
+        return new Aluguel(cliente, vendedor, carro, qtdDiasAluguel);
     }
 
     public Long getCpfCliente() {
