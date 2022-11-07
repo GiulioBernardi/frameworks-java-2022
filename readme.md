@@ -19,10 +19,10 @@ Também é possível consultar a comissão de um único vendedor, passando o cpf
 Apesar de todas essas funcionalidades, a API realiza crud das entidades solicitadas (Carro, vendedor e cliente)
 
 ## Coisas que serão implementadas: (serão adicionadas até dia 7/11)**
-- Retornar ResponseEntity com códigos semânticos para todas as requisições
+- ~~Retornar ResponseEntity com códigos semânticos para todas as requisições~~
 - Tratar exceções para e exibir erros no front, não exibindo erros de log do backend e impedir o app de quebrar
 - Adicionar logical delete para todas as entidades que estão guardadas no banco
-- Refatorar o código para seprara melhor services e controllers
+- ~~Refatorar o código para seprara melhor services e controllers~~
 - BAD REQUEST ao tentar cadastrar algo que já existe no banco
 
 ## Para testar você mesmo
