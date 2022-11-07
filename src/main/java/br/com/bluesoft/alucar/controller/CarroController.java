@@ -27,8 +27,14 @@ public class CarroController {
     }
 
     @GetMapping
-    public List<CarroDTO> getAllCarros(){
-        return carroService.obterCarros();
+    public ResponseEntity<List<CarroDTO>> getAllCarros(){
+        try{
+            List<CarroDTO> carros = carroService.obterCarros();
+            return ResponseEntity.ok().body(carros);
+        }catch (NoSuchElementException e){
+            return ResponseEntity.notFound().build();
+        }
+
     }
 
     @GetMapping("/{placa}")
@@ -39,7 +45,6 @@ public class CarroController {
         }catch (NoSuchElementException e){
             return ResponseEntity.notFound().build();
         }
-
     }
 
     @PostMapping("/cadastrar")

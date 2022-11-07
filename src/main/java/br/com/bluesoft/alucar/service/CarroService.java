@@ -21,6 +21,9 @@ public class CarroService {
 
     public List<CarroDTO> obterCarros(){
         List<Carro> carros = carroRepository.findAll();
+        if(carros.isEmpty()){
+            throw new NoSuchElementException();
+        }
         return CarroDTO.carroToDto(carros);
     }
 
