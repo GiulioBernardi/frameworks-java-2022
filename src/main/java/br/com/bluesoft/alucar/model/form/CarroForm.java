@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 
 public class CarroForm {
 
-    @NotNull @NotEmpty
+    @NotNull @NotEmpty @Pattern(regexp = "(^[a-zA-Z]{3}\\-)(\\d{4}$)")
     private String placa;
 
     @NotNull @NotEmpty
@@ -19,13 +19,13 @@ public class CarroForm {
     @NotNull @NotEmpty
     private String cor;
 
-    @NotNull @NotEmpty @PastOrPresent(message = "O ano o carro deve ser o ano atual ou algum ano anterior a partir do ano vigente")
+    @Positive
     private Integer ano;
 
-    @NotNull @NotEmpty @PositiveOrZero(message = "O valor da quilometragem deve ser positivo")
+    @PositiveOrZero(message = "O valor da quilometragem deve ser positivo")
     private Integer quilometragem;
 
-    @NotNull @NotEmpty @Positive(message = "O valor da diária deve ser um número positivo")
+    @Positive(message = "O valor da diária deve ser um número positivo")
     private BigDecimal diaria;
 
     //todo transformar tudo para Capitalize
