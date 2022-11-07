@@ -32,6 +32,11 @@ public class AluguelCarroController {
         this.aluguelCarroService = aluguelCarroService;
     }
 
+    //todo método get para buscar todos os alugueis
+    //todo método get para buscar aluguel filtrando por cliente
+    //todo método get para buscar aluguel filtrando por vendedor
+    //todo método get para buscar aluguel filtrando por carro
+
     @PostMapping("/alugar")
     @Transactional
     public ResponseEntity<AluguelDTO> cadastrarVenda(@RequestBody AluguelCarroForm vendaCarroForm, UriComponentsBuilder uriBuilder) {
