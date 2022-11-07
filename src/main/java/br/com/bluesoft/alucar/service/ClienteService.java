@@ -27,6 +27,9 @@ public class ClienteService {
 
     public List<ClienteDTO> obterClientes() {
         List<Cliente> clientes = clienteRepository.findAll();
+        if(clientes.isEmpty()){
+            throw new NoSuchElementException();
+        }
         return ClienteDTO.clienteToDto(clientes);
     }
 

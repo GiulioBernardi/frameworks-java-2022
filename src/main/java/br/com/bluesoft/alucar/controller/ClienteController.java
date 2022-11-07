@@ -26,8 +26,13 @@ public class ClienteController {
     }
 
     @GetMapping
-    public List<ClienteDTO> getAllClientes(){
-        return clienteService.obterClientes();
+    public ResponseEntity<List<ClienteDTO>> getAllClientes(){
+        try{
+            List<ClienteDTO> clienteDTOList = clienteService.obterClientes();
+            return ResponseEntity.ok().body(clienteDTOList);
+        } catch (NoSuchElementException e){
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @GetMapping("/{cpf}")
