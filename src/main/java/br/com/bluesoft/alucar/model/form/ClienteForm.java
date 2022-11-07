@@ -2,25 +2,24 @@ package br.com.bluesoft.alucar.model.form;
 
 import br.com.bluesoft.alucar.model.Cliente;
 import br.com.bluesoft.alucar.model.Endereco;
+import org.hibernate.validator.constraints.br.CPF;
 
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 
 public class ClienteForm {
 
-    @NotNull @NotEmpty
+    @NotNull @NotEmpty @Size(min = 5)
     private String nomeCompleto;
 
-    @NotNull @NotEmpty
+    @Positive
     private Long cpf;
 
-    @NotNull @NotEmpty
     private Endereco endereco;
 
-    @NotNull @NotEmpty
+    @NotNull @NotEmpty @Pattern(regexp = "^([a-zA-Z0-9_\\-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)$")
     private String email;
 
-    @NotNull @NotEmpty
+    @Positive
     private Long celular;
 
     public Cliente formToCliente(){
