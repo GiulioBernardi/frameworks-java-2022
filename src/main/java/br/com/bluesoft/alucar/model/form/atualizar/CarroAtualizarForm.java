@@ -20,13 +20,13 @@ public class CarroAtualizarForm {
     @NotNull @NotEmpty
     private String cor;
 
-    @NotNull @NotEmpty @PastOrPresent(message = "O ano o carro deve ser o ano atual ou algum ano anterior a partir do ano vigente")
+    @Positive
     private Integer ano;
 
-    @NotNull @NotEmpty @PositiveOrZero(message = "O valor da quilometragem deve ser positivo")
+    @PositiveOrZero(message = "O valor da quilometragem deve ser positivo")
     private Integer quilometragem;
 
-    @NotNull @NotEmpty @Positive(message = "O valor da diária deve ser um número positivo")
+    @Positive(message = "O valor da diária deve ser um número positivo")
     private BigDecimal diaria;
 
 

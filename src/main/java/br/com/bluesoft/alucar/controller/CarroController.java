@@ -66,14 +66,22 @@ public class CarroController {
     @PutMapping("/atualizar/{placa}")
     @Transactional
     public ResponseEntity<CarroDTO> atualizar(@PathVariable String placa, @RequestBody @Valid CarroAtualizarForm carroAtualizarForm){
-        Carro carro = carroService.atualizar(carroAtualizarForm, placa);
-        return ResponseEntity.ok(new CarroDTO(carro));
+        try{
+            Carro carro = carroService.atualizar(carroAtualizarForm, placa);
+            return ResponseEntity.ok(new CarroDTO(carro));
+        }catch (NoSuchElementException e){
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @DeleteMapping("/deletar/{placa}")
     public ResponseEntity<?> deletar(@PathVariable String placa){
-        carroService.deletar(placa);
-        return ResponseEntity.noContent().build();
+        try{
+            carroService.deletar(placa);
+            return ResponseEntity.noContent().build();
+        }catch (NoSuchElementException e){
+            return ResponseEntity.notFound().build();
+        }
     }
 
 
