@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import javax.management.InstanceAlreadyExistsException;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.net.URI;
@@ -34,7 +35,6 @@ public class CarroController {
         }catch (NoSuchElementException e){
             return ResponseEntity.notFound().build();
         }
-
     }
 
     @GetMapping("/{placa}")
@@ -50,13 +50,17 @@ public class CarroController {
     @PostMapping("/cadastrar")
     @Transactional
     public ResponseEntity<CarroDTO> cadastrarCarro(@RequestBody @Valid CarroForm carroForm, UriComponentsBuilder uriBuilder){
-        Carro carro = carroService.salvar(carroForm);
+        try{
+            Carro carro = carroService.salvar(carroForm);
 
-        URI uri = uriBuilder.path("/carros/{placa}")
-                .buildAndExpand(carro.getPlaca())
-                .toUri();
+            URI uri = uriBuilder.path("/carros/{placa}")
+                    .buildAndExpand(carro.getPlaca())
+                    .toUri();
 
-        return ResponseEntity.created(uri).body(new CarroDTO(carro));
+            return ResponseEntity.created(uri).body(new CarroDTO(carro));
+        }catch (InstanceAlreadyExistsException e){
+            return ResponseEntity.badRequest().build();
+        }
     }
 
     @PutMapping("/atualizar/{placa}")

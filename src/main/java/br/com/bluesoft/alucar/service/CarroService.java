@@ -6,6 +6,8 @@ import br.com.bluesoft.alucar.model.form.CarroForm;
 import br.com.bluesoft.alucar.model.form.atualizar.CarroAtualizarForm;
 import br.com.bluesoft.alucar.repository.CarroRepository;
 import org.springframework.stereotype.Service;
+
+import javax.management.InstanceAlreadyExistsException;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -28,8 +30,13 @@ public class CarroService {
     }
 
 
-    public Carro salvar(CarroForm carroForm) {
+    public Carro salvar(CarroForm carroForm) throws InstanceAlreadyExistsException {
         Carro carro = carroForm.formToCarro();
+
+        Optional<Carro> carroOptional = carroRepository.findByPlaca(carro.getPlaca());
+        if(carroOptional.isPresent()){
+            throw new InstanceAlreadyExistsException();
+        }
         carroRepository.save(carro);
         return carro;
 
