@@ -14,6 +14,7 @@ import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("/carros")
@@ -31,8 +32,14 @@ public class CarroController {
     }
 
     @GetMapping("/{placa}")
-    public CarroDTO getCarroPelaPlaca(@PathVariable String placa){
-        return carroService.obterPorPlaca(placa);
+    public ResponseEntity<CarroDTO> getCarroPelaPlaca(@PathVariable String placa){
+        try{
+            CarroDTO retornoDaService = carroService.obterPorPlaca(placa);
+            return ResponseEntity.ok().body(retornoDaService);
+        }catch (NoSuchElementException e){
+            return ResponseEntity.notFound().build();
+        }
+
     }
 
     @PostMapping("/cadastrar")
