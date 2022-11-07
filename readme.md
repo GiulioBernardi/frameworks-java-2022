@@ -23,6 +23,7 @@ Apesar de todas essas funcionalidades, a API realiza crud das entidades solicita
 - Tratar exceções para e exibir erros no front, não exibindo erros de log do backend e impedir o app de quebrar
 - Adicionar logical delete para todas as entidades que estão guardadas no banco
 - Refatorar o código para seprara melhor services e controllers
+- BAD REQUEST ao tentar cadastrar algo que já existe no banco
 
 ## Para testar você mesmo
 Tenha em vista que, por ainda não estar 100% tradado, ao forçar alguma requisição errada, o app vai quebrar!
