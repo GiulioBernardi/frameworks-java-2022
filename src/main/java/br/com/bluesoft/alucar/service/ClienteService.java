@@ -7,6 +7,7 @@ import br.com.bluesoft.alucar.model.form.atualizar.ClienteAtualizarForm;
 import br.com.bluesoft.alucar.repository.ClienteRepository;
 import org.springframework.stereotype.Service;
 
+import javax.management.InstanceAlreadyExistsException;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -49,8 +50,12 @@ public class ClienteService {
         return clienteOptional.get();
     }
 
-    public Cliente salvar(ClienteForm clienteForm) {
+    public Cliente salvar(ClienteForm clienteForm) throws InstanceAlreadyExistsException {
         Cliente cliente = clienteForm.formToCliente();
+        Optional<Cliente> clienteOptional = clienteRepository.findByCpf(cliente.getCpf());
+        if(clienteOptional.isPresent()){
+            throw new InstanceAlreadyExistsException();
+        }
         clienteRepository.save(cliente);
         return cliente;
     }

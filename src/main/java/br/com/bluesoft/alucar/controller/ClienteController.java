@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import javax.management.InstanceAlreadyExistsException;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.net.URI;
@@ -47,12 +48,17 @@ public class ClienteController {
     @PostMapping("/cadastrar")
     @Transactional
     public ResponseEntity<ClienteDTO> cadastrarCliente(@RequestBody @Valid ClienteForm clienteForm, UriComponentsBuilder uriBuilder){
-        Cliente cliente = clienteService.salvar(clienteForm);
+        try{
+            Cliente cliente = clienteService.salvar(clienteForm);
 
-        URI uri = uriBuilder.path("/clientes/{cpf}")
-                .buildAndExpand(cliente.getCpf())
-                .toUri();
-        return ResponseEntity.created(uri).body(new ClienteDTO(cliente));
+            URI uri = uriBuilder.path("/clientes/{cpf}")
+                    .buildAndExpand(cliente.getCpf())
+                    .toUri();
+            return ResponseEntity.created(uri).body(new ClienteDTO(cliente));
+        }catch (InstanceAlreadyExistsException e){
+            return ResponseEntity.badRequest().build();
+        }
+
     }
 
     @PutMapping("/atualizar/{cpf}")
