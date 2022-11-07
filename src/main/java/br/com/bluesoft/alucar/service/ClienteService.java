@@ -52,8 +52,9 @@ public class ClienteService {
 
     public Cliente salvar(ClienteForm clienteForm) throws InstanceAlreadyExistsException {
         Cliente cliente = clienteForm.formToCliente();
-        Optional<Cliente> clienteOptional = clienteRepository.findByCpf(cliente.getCpf());
-        if(clienteOptional.isPresent()){
+        Optional<Cliente> clienteOptionalCpf = clienteRepository.findByCpf(cliente.getCpf());
+        Optional<Cliente> clienteOptionalEmail = clienteRepository.findByEmail(cliente.getEmail());
+        if(clienteOptionalCpf.isPresent() || clienteOptionalEmail.isPresent()){
             throw new InstanceAlreadyExistsException();
         }
         clienteRepository.save(cliente);
