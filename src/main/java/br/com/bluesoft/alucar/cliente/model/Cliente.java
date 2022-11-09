@@ -35,7 +35,14 @@ public class Cliente {
     public Cliente(String nomeCompleto, Long cpf, Endereco endereco, String email, Long celular) {
         this.nomeCompleto = nomeCompleto;
         this.cpf = cpf;
-//        this.endereco = endereco;
+        this.email = email;
+        this.celular = celular;
+    }
+
+    public Cliente(Long id, String nomeCompleto, Long cpf, String email, Long celular) {
+        this.id = id;
+        this.nomeCompleto = nomeCompleto;
+        this.cpf = cpf;
         this.email = email;
         this.celular = celular;
     }

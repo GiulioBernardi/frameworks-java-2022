@@ -23,6 +23,13 @@ public class Vendedor {
     public Vendedor() {
     }
 
+    public Vendedor(Long id, String nomeCompleto, Long cpf, LocalDate dataAdmissao) {
+        this.id = id;
+        this.nomeCompleto = nomeCompleto;
+        this.cpf = cpf;
+        this.dataAdmissao = dataAdmissao;
+    }
+
     public Vendedor(String nomeCompleto, Long cpf, LocalDate dataAdmissao) {
         this.nomeCompleto = nomeCompleto;
         this.cpf = cpf;

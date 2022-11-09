@@ -10,18 +10,17 @@ import br.com.bluesoft.alucar.vendedor.VendedorService;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 
 public class AluguelCarroForm {
 
 
     @NotNull
     @NotEmpty
-//    @Pattern(regexp = "([0-9]{2}[\\.]?[0-9]{3}[\\.]?[0-9]{3}[\\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\\.]?[0-9]{3}[\\.]?[0-9]{3}[-]?[0-9]{2})\n")
     private Long cpfCliente;
 
     @NotNull
     @NotEmpty
-//    @Pattern(regexp = "([0-9]{2}[\\.]?[0-9]{3}[\\.]?[0-9]{3}[\\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\\.]?[0-9]{3}[\\.]?[0-9]{3}[-]?[0-9]{2})\n")
     private Long cpfVendedor;
 
     @NotNull
@@ -30,14 +29,13 @@ public class AluguelCarroForm {
 
     @NotNull
     @NotEmpty
+    @Positive
     private int qtdDiasAluguel;
 
     public Aluguel formToAluguel(ClienteService clienteService, VendedorService vendedorService, CarroService carroService){
-
         Cliente cliente = clienteService.obterPorCpfModel(cpfCliente);
         Vendedor vendedor = vendedorService.obterPorCpfModel(cpfVendedor);
         Carro carro = carroService.obterPorPlacaModel(placaDoCarro);
-
         return new Aluguel(cliente, vendedor, carro, qtdDiasAluguel);
     }
 

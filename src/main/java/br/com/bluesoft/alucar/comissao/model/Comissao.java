@@ -32,14 +32,6 @@ public class Comissao {
         this.contaCorrente = contaCorrente;
     }
 
-    public BigDecimal calculaComissaoPadrao(BigDecimal valorTotalDaVenda){
-        return valorTotalDaVenda.multiply(BigDecimal.valueOf(0.1));
-    }
-
-    public BigDecimal calculaComissaoParaVeterano(BigDecimal valorTotalDaVenda){
-        return valorTotalDaVenda.multiply(BigDecimal.valueOf(0.13));
-    }
-
     public Long getId() {
         return id;
     }

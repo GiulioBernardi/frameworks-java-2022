@@ -13,10 +13,10 @@ import java.util.Optional;
 @Repository
 public interface ComissaoRepository extends JpaRepository<Comissao, Long> {
 
-    @Query("select new br.com.bluesoft.alucar.model.dto.ComissaoDTO(c.vendedor, sum(c.valor), c.contaCorrente) from Comissao AS c GROUP BY c.vendedor")
+    @Query("select new br.com.bluesoft.alucar.comissao.model.dto.ComissaoDTO(c.vendedor, sum(c.valor), c.contaCorrente) from Comissao AS c GROUP BY c.vendedor")
     List<ComissaoDTO> agrupaPorVendedor();
 
 
-    @Query("select new br.com.bluesoft.alucar.model.dto.ComissaoDTO(c.vendedor, sum(c.valor), c.contaCorrente) from Comissao AS c where c.vendedor.cpf = :cpf GROUP BY c.vendedor")
+    @Query("select new br.com.bluesoft.alucar.comissao.model.dto.ComissaoDTO(c.vendedor, sum(c.valor), c.contaCorrente) from Comissao AS c where c.vendedor.cpf = :cpf GROUP BY c.vendedor")
     Optional<ComissaoDTO> agrupaPorVendedorByCpf(@Param("cpf")Long cpf);
 }
