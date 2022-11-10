@@ -23,8 +23,6 @@ public class AluguelCarroController {
         this.aluguelCarroService = aluguelCarroService;
     }
 
-    //todo método get para buscar todos os alugueis
-
     @GetMapping("/todos")
     public ResponseEntity<List<AluguelDTO>> getAllAlugueis(){
         try{
@@ -34,7 +32,6 @@ public class AluguelCarroController {
             return ResponseEntity.notFound().build();
         }
     }
-
 
     //todo método get para buscar aluguel filtrando por cliente
     //todo método get para buscar aluguel filtrando por vendedor
@@ -55,6 +52,5 @@ public class AluguelCarroController {
         }catch (NoSuchElementException e){
             return ResponseEntity.notFound().build();
         }
-
     }
 }
