@@ -14,11 +14,6 @@ public interface EnderecoRepository extends JpaRepository<Endereco, Long> {
     @Query(value = "delete from endereco where endereco.cliente_key = (select cliente_key from cliente where cpf = :cpf)))", nativeQuery = true)
     void deletaEnderecoPorIdCliente(@Param("cpf") Long cpf);
 
-//    @Modifying
-//    @Query("delete from Endereco e where e.cliente.cpf = :cpf")
-//    void deletaEnderecoPorIdCliente(@Param("cpf") Long cpf);
-
-
     void deleteByCliente_Id(Long Id);
 
 }
