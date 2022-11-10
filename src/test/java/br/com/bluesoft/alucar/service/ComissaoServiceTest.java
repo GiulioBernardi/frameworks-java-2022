@@ -100,4 +100,82 @@ public class ComissaoServiceTest {
         assertEquals(comissaoVendedor, valorEsperado);
     }
 
+    @Test
+    void deveCalcularComissaoParaNovatoSeVendedorTiverMenosQueCincoAnos(){
+        BigDecimal VALOR_TOTAL_DA_COMPRA = BigDecimal.valueOf(100);
+
+        Vendedor vendedorVeterano = new Vendedor();
+        vendedorVeterano.setId(1l);
+        vendedorVeterano.setNomeCompleto("Giulio Cesar Costa Bernardi");
+        vendedorVeterano.setCpf(14785236985l);
+        vendedorVeterano.setDataAdmissao(LocalDate.of(2022, 01, 10));
+
+        ContaCorrente contaCorrente = new ContaCorrente();
+        contaCorrente.setId(1l);
+        contaCorrente.setContaCorrente(1234);
+        contaCorrente.setAgencia(123);
+        contaCorrente.setBanco("Itau");
+        contaCorrente.setVendedor(vendedorVeterano);
+
+        BigDecimal comissaoVendedor = comissaoService.calculaComissaoDaVenda(vendedorVeterano, VALOR_TOTAL_DA_COMPRA);
+
+        //10%
+        BigDecimal valorEsperado = VALOR_TOTAL_DA_COMPRA
+                .multiply(BigDecimal.valueOf(0.1))
+                .setScale(2,BigDecimal.ROUND_DOWN);;
+        assertEquals(comissaoVendedor, valorEsperado);
+    }
+
+    @Test
+    void deveCalcularComissaoParaNovatoSeVendedorTiverMenosQueCincoAnos2(){
+        BigDecimal VALOR_TOTAL_DA_COMPRA = BigDecimal.valueOf(56.47);
+
+        Vendedor vendedorVeterano = new Vendedor();
+        vendedorVeterano.setId(1l);
+        vendedorVeterano.setNomeCompleto("Giulio Cesar Costa Bernardi");
+        vendedorVeterano.setCpf(14785236985l);
+        vendedorVeterano.setDataAdmissao(LocalDate.of(2022, 01, 10));
+
+        ContaCorrente contaCorrente = new ContaCorrente();
+        contaCorrente.setId(1l);
+        contaCorrente.setContaCorrente(1234);
+        contaCorrente.setAgencia(123);
+        contaCorrente.setBanco("Itau");
+        contaCorrente.setVendedor(vendedorVeterano);
+
+        BigDecimal comissaoVendedor = comissaoService.calculaComissaoDaVenda(vendedorVeterano, VALOR_TOTAL_DA_COMPRA);
+
+        //5.64
+        BigDecimal valorEsperado = VALOR_TOTAL_DA_COMPRA
+                .multiply(BigDecimal.valueOf(0.1))
+                .setScale(2,BigDecimal.ROUND_DOWN);;
+        assertEquals(comissaoVendedor, valorEsperado);
+    }
+
+    @Test
+    void deveCalcularComissaoParaNovatoSeVendedorTiverMenosQueCincoAnos3(){
+        BigDecimal VALOR_TOTAL_DA_COMPRA = BigDecimal.valueOf(263);
+
+        Vendedor vendedorVeterano = new Vendedor();
+        vendedorVeterano.setId(1l);
+        vendedorVeterano.setNomeCompleto("Giulio Cesar Costa Bernardi");
+        vendedorVeterano.setCpf(14785236985l);
+        vendedorVeterano.setDataAdmissao(LocalDate.of(2022, 01, 10));
+
+        ContaCorrente contaCorrente = new ContaCorrente();
+        contaCorrente.setId(1l);
+        contaCorrente.setContaCorrente(1234);
+        contaCorrente.setAgencia(123);
+        contaCorrente.setBanco("Itau");
+        contaCorrente.setVendedor(vendedorVeterano);
+
+        BigDecimal comissaoVendedor = comissaoService.calculaComissaoDaVenda(vendedorVeterano, VALOR_TOTAL_DA_COMPRA);
+
+        //26.30
+        BigDecimal valorEsperado = VALOR_TOTAL_DA_COMPRA
+                .multiply(BigDecimal.valueOf(0.1))
+                .setScale(2,BigDecimal.ROUND_DOWN);;
+        assertEquals(comissaoVendedor, valorEsperado);
+    }
+
 }

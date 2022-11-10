@@ -59,9 +59,11 @@ public class ComissaoService {
         Period anosQueOVendedorEstaNaEmpresa = Period.between(vendedor.getDataAdmissao(), LocalDate.now());
         int anos_de_casa_do_vendedor = anosQueOVendedorEstaNaEmpresa.getYears();
         if(anos_de_casa_do_vendedor >= ANOS_DE_CASA_VETERANO){
-            return valorDaVenda.multiply(BigDecimal.valueOf(COMISSAO_VETERANO)).setScale(2, BigDecimal.ROUND_DOWN);
+            return valorDaVenda.multiply(BigDecimal.valueOf(COMISSAO_VETERANO))
+                    .setScale(2, BigDecimal.ROUND_DOWN);
         }else{
-            return valorDaVenda.multiply(BigDecimal.valueOf(COMISSAO_NOVATO)).setScale(2, BigDecimal.ROUND_DOWN);
+            return valorDaVenda.multiply(BigDecimal.valueOf(COMISSAO_NOVATO))
+                    .setScale(2, BigDecimal.ROUND_DOWN);
         }
     }
 }
