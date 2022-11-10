@@ -25,39 +25,22 @@ import java.util.NoSuchElementException;
 
 @Service
 public class AluguelCarroService {
-
     AluguelRepository aluguelRepository;
-//    ClienteRepository clienteRepository;
-//    VendedorRepository vendedorRepository;
-//    CarroRepository carroRepository;
     ComissaoService comissaoService;
-
     ClienteService clienteService;
     VendedorService vendedorService;
-
-
     CarroService carroService;
-    public AluguelCarroService(ClienteRepository clienteRepository,
-                               VendedorRepository vendedorRepository,
-                               CarroRepository carroRepository,
-                               AluguelRepository aluguelRepository,
+    public AluguelCarroService(AluguelRepository aluguelRepository,
                                ComissaoService comissaoService,
                                ClienteService clienteService,
                                CarroService carroService,
                                VendedorService vendedorService){
-//        this.carroRepository = carroRepository;
-//        this.vendedorRepository = vendedorRepository;
-//        this.clienteRepository = clienteRepository;
         this.comissaoService = comissaoService;
         this.aluguelRepository = aluguelRepository;
         this.clienteService = clienteService;
         this.vendedorService = vendedorService;
         this.carroService = carroService;
     }
-
-//    private final double COMISSAO_NOVATO = 0.1;
-//    private final double COMISSAO_VETERANO = 0.13;
-//    private final int ANOS_DE_CASA_VETERANO = 5;
 
     public Aluguel salvar(AluguelCarroForm vendaCarroForm) {
         Aluguel aluguel = vendaCarroForm.formToAluguel(clienteService, vendedorService, carroService);
@@ -77,14 +60,4 @@ public class AluguelCarroService {
 
 
     }
-
-//    public BigDecimal calculaComissaoDaVenda(Vendedor vendedor, BigDecimal valor_total_da_compra) {
-//        Period anosQueOVendedorEstaNaEmpresa = Period.between(vendedor.getDataAdmissao(), LocalDate.now());
-//        int anos_de_casa_do_vendedor = anosQueOVendedorEstaNaEmpresa.getYears();
-//        if(anos_de_casa_do_vendedor >= ANOS_DE_CASA_VETERANO){
-//            return valor_total_da_compra.multiply(BigDecimal.valueOf(COMISSAO_VETERANO));
-//        }else{
-//            return valor_total_da_compra.multiply(BigDecimal.valueOf(COMISSAO_NOVATO));
-//        }
-//    }
 }
