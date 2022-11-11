@@ -4,6 +4,7 @@ CREATE TABLE carro (
    modelo VARCHAR(20) NOT NULL,
    cor VARCHAR(20) NOT NULL,
    ano INT NOT NULL,
+   status INT NOT NULL,
    quilometragem INT NOT NULL,
    diaria FLOAT NOT NULL
 );
@@ -13,6 +14,7 @@ CREATE TABLE cliente (
                          nome VARCHAR(100) NOT NULL,
                          cpf BIGINT NOT NULL,
                          email VARCHAR(50) NOT NULL,
+                         status INT NOT NULL,
                          celular BIGINT NOT NULL
 );
 
@@ -23,6 +25,7 @@ CREATE TABLE endereco (
                           complemento VARCHAR(50),
                           bairro VARCHAR(50) NOT NULL,
                           cidade VARCHAR(50) NOT NULL,
+                          status INT NOT NULL,
                           estado VARCHAR(2) NOT NULL,
                           cliente_key INT NOT NULL,
                           foreign key (cliente_key) references cliente(cliente_key) on delete cascade
@@ -32,6 +35,7 @@ CREATE TABLE vendedor (
   vendedor_key INT PRIMARY KEY AUTO_INCREMENT,
   nome VARCHAR(100) NOT NULL,
   cpf BIGINT NOT NULL,
+  status INT NOT NULL,
   data_admissao DATE NOT NULL
 );
 
@@ -40,6 +44,7 @@ CREATE TABLE conta_corrente (
   banco VARCHAR(50) not null,
   agencia INT NOT NULL,
   conta_corrente INT NOT NULL,
+  status INT NOT NULL,
   vendedor_key INT NOT NULL,
   foreign key (vendedor_key) references vendedor(vendedor_key) on delete cascade
 );
@@ -50,6 +55,7 @@ CREATE TABLE aluguel(
   dias INT not null,
   valor_aluguel FLOAT not null,
   data_aluguel DATE not null,
+  status INT NOT NULL,
   cliente_key INT not null,
   foreign key (cliente_key) references cliente(cliente_key),
   vendedor_key INT,
