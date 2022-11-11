@@ -23,10 +23,20 @@ public class AluguelCarroController {
         this.aluguelCarroService = aluguelCarroService;
     }
 
-    @GetMapping("/todos")
-    public ResponseEntity<List<AluguelDTO>> getAllAlugueis(){
+    @GetMapping
+    public ResponseEntity<List<AluguelDTO>> pegarAlugueisAtivos(){
         try{
-            List<AluguelDTO> alugueis = aluguelCarroService.obterTodos();
+            List<AluguelDTO> alugueis = aluguelCarroService.obterTodosAtivos();
+            return ResponseEntity.ok().body(alugueis);
+        }catch (NoSuchElementException e){
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("/lixeira")
+    public ResponseEntity<List<AluguelDTO>> pegarAlugueisApagados(){
+        try{
+            List<AluguelDTO> alugueis = aluguelCarroService.obterTodosApagados();
             return ResponseEntity.ok().body(alugueis);
         }catch (NoSuchElementException e){
             return ResponseEntity.notFound().build();
@@ -53,4 +63,11 @@ public class AluguelCarroController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @DeleteMapping("/deletar/{id}")
+    public ResponseEntity<?> deletarAluguel(@PathVariable Long id){
+        aluguelCarroService.deletarLogicamente(id);
+        return ResponseEntity.noContent().build();
+    }
+
 }

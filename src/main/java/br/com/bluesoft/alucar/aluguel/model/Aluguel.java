@@ -3,6 +3,7 @@ package br.com.bluesoft.alucar.aluguel.model;
 
 import br.com.bluesoft.alucar.carro.model.Carro;
 import br.com.bluesoft.alucar.cliente.model.Cliente;
+import br.com.bluesoft.alucar.enumeradores.StatusEnum;
 import br.com.bluesoft.alucar.vendedor.model.Vendedor;
 
 import javax.persistence.*;
@@ -26,6 +27,8 @@ public class Aluguel {
     private BigDecimal valorTotalAluguel;
     @Column(name = "data_aluguel")
     private LocalDate dataDoAluguel;
+
+    private Integer status;
 
     @OneToOne
     @JoinColumn(name="cliente_key")
@@ -55,9 +58,18 @@ public class Aluguel {
         this.dataDoAluguel = LocalDate.now();
         this.modeloCarro = carro.getModelo();
         this.valorTotalAluguel = this.calculaValorTotal(this.getDiasComOCarro(), carro.getDiaria());
+        this.status = StatusEnum.ATIVO.getValor();
     }
 
     public Aluguel() {
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     public Long getId() {

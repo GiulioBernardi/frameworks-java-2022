@@ -3,25 +3,16 @@ package br.com.bluesoft.alucar.aluguel;
 import br.com.bluesoft.alucar.aluguel.model.Aluguel;
 import br.com.bluesoft.alucar.aluguel.model.dto.AluguelDTO;
 import br.com.bluesoft.alucar.aluguel.model.form.AluguelCarroForm;
-import br.com.bluesoft.alucar.carro.CarroRepository;
-import br.com.bluesoft.alucar.cliente.ClienteRepository;
-import br.com.bluesoft.alucar.comissao.model.Comissao;
-import br.com.bluesoft.alucar.contaCorrente.ContaCorrenteRepository;
-import br.com.bluesoft.alucar.contaCorrente.model.ContaCorrente;
-import br.com.bluesoft.alucar.vendedor.VendedorRepository;
 import br.com.bluesoft.alucar.carro.CarroService;
 import br.com.bluesoft.alucar.cliente.ClienteService;
 import br.com.bluesoft.alucar.comissao.ComissaoService;
+import br.com.bluesoft.alucar.enumeradores.StatusEnum;
 import br.com.bluesoft.alucar.vendedor.VendedorService;
-import br.com.bluesoft.alucar.vendedor.model.Vendedor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.Period;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Service
 public class AluguelCarroService {
@@ -51,13 +42,30 @@ public class AluguelCarroService {
         return aluguel;
     }
 
-    public List<AluguelDTO> obterTodos() {
-        List<Aluguel> alugueis = aluguelRepository.findAll();
+    public List<AluguelDTO> obterTodosAtivos() {
+        List<Aluguel> alugueis = aluguelRepository.todosAtivos();
         if(alugueis.isEmpty()){
             throw new NoSuchElementException();
         }
         return AluguelDTO.aluguelToDto(alugueis);
+    }
 
+    public List<AluguelDTO> obterTodosApagados() {
+        List<Aluguel> alugueis = aluguelRepository.todosInativos();
+        if(alugueis.isEmpty()){
+            throw new NoSuchElementException();
+        }
+        return AluguelDTO.aluguelToDto(alugueis);
+    }
 
+    public void deletarLogicamente(Long id) {
+        Optional<Aluguel> aluguelOptional = aluguelRepository.findById(id);
+        if(aluguelOptional.isEmpty()){
+            throw new NoSuchElementException();
+        }
+        Aluguel aluguel = aluguelOptional.get();
+        int inativo = StatusEnum.INATIVO.getValor();
+        aluguel.setStatus(inativo);
+        aluguelRepository.save(aluguel);
     }
 }
