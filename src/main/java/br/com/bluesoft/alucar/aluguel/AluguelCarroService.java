@@ -68,4 +68,12 @@ public class AluguelCarroService {
         aluguel.setStatus(inativo);
         aluguelRepository.save(aluguel);
     }
+
+    public void deletar(Long id) {
+        Optional<Aluguel> aluguelOptional = aluguelRepository.findById(id);
+        if(aluguelOptional.isEmpty()){
+            throw new NoSuchElementException();
+        }
+        aluguelRepository.deleteById(id);
+    }
 }

@@ -64,9 +64,15 @@ public class AluguelCarroController {
         }
     }
 
+    @DeleteMapping("/apagar/{id}")
+    public ResponseEntity<?> apagarAluguel(@PathVariable Long id){
+        aluguelCarroService.deletarLogicamente(id);
+        return ResponseEntity.noContent().build();
+    }
+
     @DeleteMapping("/deletar/{id}")
     public ResponseEntity<?> deletarAluguel(@PathVariable Long id){
-        aluguelCarroService.deletarLogicamente(id);
+        aluguelCarroService.deletar(id);
         return ResponseEntity.noContent().build();
     }
 
