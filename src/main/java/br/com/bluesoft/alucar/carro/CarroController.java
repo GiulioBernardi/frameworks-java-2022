@@ -71,8 +71,8 @@ public class CarroController {
         }
     }
 
-    @DeleteMapping("/deletar/{placa}")
-    public ResponseEntity<?> deletar(@PathVariable String placa){
+    @DeleteMapping("/apagar/{placa}")
+    public ResponseEntity<?> apagarCarro(@PathVariable String placa){
         try{
             carroService.deletar(placa);
             return ResponseEntity.noContent().build();

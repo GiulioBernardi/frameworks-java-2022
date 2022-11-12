@@ -66,14 +66,24 @@ public class AluguelCarroController {
 
     @DeleteMapping("/apagar/{id}")
     public ResponseEntity<?> apagarAluguel(@PathVariable Long id){
-        aluguelCarroService.deletarLogicamente(id);
-        return ResponseEntity.noContent().build();
+        try{
+            aluguelCarroService.deletarLogicamente(id);
+            return ResponseEntity.noContent().build();
+        }catch (NoSuchElementException e){
+            return ResponseEntity.notFound().build();
+        }catch (IllegalArgumentException e){
+            return ResponseEntity.badRequest().build();
+        }
     }
 
     @DeleteMapping("/deletar/{id}")
     public ResponseEntity<?> deletarAluguel(@PathVariable Long id){
-        aluguelCarroService.deletar(id);
-        return ResponseEntity.noContent().build();
+        try{
+            aluguelCarroService.deletar(id);
+            return ResponseEntity.noContent().build();
+        }catch (NoSuchElementException e){
+            return ResponseEntity.notFound().build();
+        }
     }
 
 }

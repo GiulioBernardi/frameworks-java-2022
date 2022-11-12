@@ -64,8 +64,10 @@ public class AluguelCarroService {
             throw new NoSuchElementException();
         }
         Aluguel aluguel = aluguelOptional.get();
-        int inativo = StatusEnum.INATIVO.getValor();
-        aluguel.setStatus(inativo);
+        if(aluguel.getStatus() == StatusEnum.INATIVO){
+            throw new IllegalArgumentException();
+        }
+        aluguel.setStatus(StatusEnum.INATIVO);
         aluguelRepository.save(aluguel);
     }
 

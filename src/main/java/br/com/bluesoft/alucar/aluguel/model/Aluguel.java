@@ -28,7 +28,8 @@ public class Aluguel {
     @Column(name = "data_aluguel")
     private LocalDate dataDoAluguel;
 
-    private Integer status;
+    @Enumerated(EnumType.ORDINAL)
+    private StatusEnum status;
 
     @OneToOne
     @JoinColumn(name="cliente_key")
@@ -58,17 +59,17 @@ public class Aluguel {
         this.dataDoAluguel = LocalDate.now();
         this.modeloCarro = carro.getModelo();
         this.valorTotalAluguel = this.calculaValorTotal(this.getDiasComOCarro(), carro.getDiaria());
-        this.status = StatusEnum.ATIVO.getValor();
+        this.status = StatusEnum.ATIVO;
     }
 
     public Aluguel() {
     }
 
-    public Integer getStatus() {
+    public StatusEnum getStatus() {
         return status;
     }
 
-    public void setStatus(Integer status) {
+    public void setStatus(StatusEnum status) {
         this.status = status;
     }
 
