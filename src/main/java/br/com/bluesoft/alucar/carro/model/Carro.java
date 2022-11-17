@@ -1,8 +1,8 @@
 package br.com.bluesoft.alucar.carro.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import br.com.bluesoft.alucar.enumeradores.StatusEnum;
+
+import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
@@ -22,6 +22,8 @@ public class Carro implements Serializable {
     @Column(nullable = false)
     private Integer ano;
 
+    @Enumerated(EnumType.ORDINAL)
+    private StatusEnum status;
     @Column(nullable = false)
     private Integer quilometragem;
 
@@ -39,8 +41,17 @@ public class Carro implements Serializable {
         this.ano = ano;
         this.quilometragem = quilometragem;
         this.diaria = diaria;
+        this.status = StatusEnum.ATIVO;
     }
 
+
+    public StatusEnum getStatus() {
+        return status;
+    }
+
+    public void setStatus(StatusEnum status) {
+        this.status = status;
+    }
 
     public String getPlaca() {
         return placa;

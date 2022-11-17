@@ -4,6 +4,7 @@ import br.com.bluesoft.alucar.carro.model.Carro;
 import br.com.bluesoft.alucar.carro.model.dto.CarroDTO;
 import br.com.bluesoft.alucar.carro.model.form.CarroForm;
 import br.com.bluesoft.alucar.carro.model.form.atualizar.CarroAtualizarForm;
+import br.com.bluesoft.alucar.enumeradores.StatusEnum;
 import org.springframework.stereotype.Service;
 
 import javax.management.InstanceAlreadyExistsException;
@@ -21,7 +22,7 @@ public class CarroService {
     }
 
     public List<CarroDTO> obterCarros(){
-        List<Carro> carros = carroRepository.findAll();
+        List<Carro> carros = carroRepository.findAtivos();
         if(carros.isEmpty()){
             throw new NoSuchElementException();
         }
@@ -75,5 +76,26 @@ public class CarroService {
             throw new NoSuchElementException();
         }
         carroRepository.deleteById(placa);
+    }
+
+    public void apagar(String placa) {
+        Optional<Carro> carroOptional = carroRepository.findByPlaca(placa);
+        if(carroOptional.isEmpty()){
+            throw new NoSuchElementException();
+        }
+        Carro carro = carroOptional.get();
+        if(carro.getStatus() == StatusEnum.INATIVO){
+            throw new IllegalArgumentException();
+        }
+        carro.setStatus(StatusEnum.INATIVO);
+        carroRepository.save(carro);
+    }
+
+    public List<CarroDTO> obterCarrosInativos() {
+        List<Carro> carros = carroRepository.findInativos();
+        if(carros.isEmpty()){
+            throw new NoSuchElementException();
+        }
+        return CarroDTO.carroToDto(carros);
     }
 }

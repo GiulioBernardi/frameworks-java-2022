@@ -25,9 +25,19 @@ public class CarroController {
     }
 
     @GetMapping
-    public ResponseEntity<List<CarroDTO>> getAllCarros(){
+    public ResponseEntity<List<CarroDTO>> todosAtivos(){
         try{
             List<CarroDTO> carros = carroService.obterCarros();
+            return ResponseEntity.ok().body(carros);
+        }catch (NoSuchElementException e){
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("/lixeira")
+    public ResponseEntity<List<CarroDTO>> todosInativos(){
+        try{
+            List<CarroDTO> carros = carroService.obterCarrosInativos();
             return ResponseEntity.ok().body(carros);
         }catch (NoSuchElementException e){
             return ResponseEntity.notFound().build();
@@ -73,6 +83,18 @@ public class CarroController {
 
     @DeleteMapping("/apagar/{placa}")
     public ResponseEntity<?> apagarCarro(@PathVariable String placa){
+        try{
+            carroService.apagar(placa);
+            return ResponseEntity.noContent().build();
+        }catch (NoSuchElementException e){
+            return ResponseEntity.notFound().build();
+        }catch (IllegalArgumentException e){
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+    @DeleteMapping("/deletar/{placa}")
+    public ResponseEntity<?> deletarCarro(@PathVariable String placa){
         try{
             carroService.deletar(placa);
             return ResponseEntity.noContent().build();
